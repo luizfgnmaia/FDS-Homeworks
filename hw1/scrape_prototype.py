@@ -7,13 +7,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 author_name = "Jeffrey Heer"
+close = True
 
-# Iniciando o Selenium
-wd = webdriver.Firefox(executable_path = "C:/Users/LuizFernando/Documents/GitHub/FDS-Homeworks/hw1/geckodriver.exe") # https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
-# Existe algo similar a um Rproject?
-
-# Indo para página
-wd.get("https://scholar.google.com.br/")
+# Iniciando o Selenium e indo até a página
+try: # https://www.w3schools.com/python/python_try_except.asp
+    wd.get("https://scholar.google.com.br/")
+except:
+    wd = webdriver.Firefox(executable_path = "C:/Users/LuizFernando/Documents/GitHub/FDS-Homeworks/hw1/geckodriver.exe") # https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
+    # Existe algo similar a um Rproject?
+    wd.get("https://scholar.google.com.br/")
 
 # Pesquisando pelo nome do autor
 WebDriverWait(wd, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#gs_hdr_tsi")))
@@ -47,12 +49,13 @@ we = wd.find_elements_by_css_selector(".gsc_a_at+ .gs_gray")
 for i in we:
     authors.append(i.text.split(", "))
     
-# Finalizando o Selenium
-wd.quit()
+# Finalizando o Selenium e arrumando o output
+if close == True:
+    wd.quit()
 
-
-len(title)
-len(authors)
-
-
+out = []
+for i in range(len(title)):
+    out.append({"title": title[i], "authors": authors[i]})
+    
+out
 
