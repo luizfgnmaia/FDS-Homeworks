@@ -13,7 +13,7 @@ close = True
 try: # https://www.w3schools.com/python/python_try_except.asp
     wd.get("https://scholar.google.com.br/")
 except:
-    wd = webdriver.Firefox(executable_path = "C:/Users/LuizFernando/Documents/GitHub/FDS-Homeworks/hw1/geckodriver.exe") # https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
+    wd = webdriver.Firefox(executable_path = "C:/Users/luiz_/Documents/GitHub/FDS-Homeworks/hw1/geckodriver.exe") # https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
     # Existe algo similar a um Rproject?
     wd.get("https://scholar.google.com.br/")
 
@@ -58,4 +58,3 @@ for i in range(len(title)):
     out.append({"title": title[i], "authors": authors[i]})
     
 out
-
